@@ -2,6 +2,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 
 public class Main {
@@ -41,6 +42,7 @@ public class Main {
         for (Double prob : allProbs) {
             totalProb += prob;
         }
+        ArrayList<String> chosenCategories = new ArrayList<>();
 
         for (int i = 1; i <= 5; i++) {
             double p = Math.random();
@@ -56,44 +58,75 @@ public class Main {
             }
             switch (counter) {
                 case 1:
-                    System.out.println("Reflection");
+                    chosenCategories.add("reflection");
+                    PA_reflection.setPickAmountCounter(PA_reflection.getPickAmountCounter()+1);
+                    PA_reflection.setPickrateAmountEligibleModifier(PA_reflection.getPickrateAmountEligibleModifier()+0.02);
                     break;
                 case 2:
-                    System.out.println("Nutrition");
+                    chosenCategories.add("nutrition");
+                    PA_nutrition.setPickAmountCounter(PA_nutrition.getPickAmountCounter()+1);
+                    PA_nutrition.setPickrateAmountEligibleModifier(PA_nutrition.getPickrateAmountEligibleModifier()+0.02);
                     break;
                 case 3:
-                    System.out.println("Nature");
+                    chosenCategories.add("cleaning");
+                    PA_cleaning.setPickAmountCounter(PA_cleaning.getPickAmountCounter()+1);
+                    PA_cleaning.setPickrateAmountEligibleModifier(PA_cleaning.getPickrateAmountEligibleModifier()+0.02);
                     break;
                 case 4:
-                    System.out.println("Cleaning");
+                    chosenCategories.add("nature");
+                    PA_nature.setPickAmountCounter(PA_nature.getPickAmountCounter()+1);
+                    PA_nature.setPickrateAmountEligibleModifier(PA_nature.getPickrateAmountEligibleModifier()+0.02);
                     break;
                 case 5:
-                    System.out.println("Fitness");
+                    chosenCategories.add("fitness");
+                    PA_fitness.setPickAmountCounter(PA_fitness.getPickAmountCounter()+1);
+                    PA_fitness.setPickrateAmountEligibleModifier(PA_fitness.getPickrateAmountEligibleModifier()+0.02);
                     break;
                 case 6:
-                    System.out.println("Social");
+                    chosenCategories.add("social");
+                    PA_social.setPickAmountCounter(PA_social.getPickAmountCounter()+1);
+                    PA_social.setPickrateAmountEligibleModifier(PA_social.getPickrateAmountEligibleModifier()+0.02);
                     break;
                 case 7:
-                    System.out.println("Talking");
+                    chosenCategories.add("talking");
+                    PA_talking.setPickAmountCounter(PA_talking.getPickAmountCounter()+1);
+                    PA_talking.setPickrateAmountEligibleModifier(PA_talking.getPickrateAmountEligibleModifier()+0.02);
                     break;
                 case 8:
-                    System.out.println("Mindfulness");
+                    chosenCategories.add("mindfulness");
+                    PA_mindfulness.setPickAmountCounter(PA_mindfulness.getPickAmountCounter()+1);
+                    PA_mindfulness.setPickrateAmountEligibleModifier(PA_mindfulness.getPickrateAmountEligibleModifier()+0.02);
                     break;
                 case 9:
-                    System.out.println("Thankfulness");
+                    chosenCategories.add("thankfulness");
+                    PA_thankfulness.setPickAmountCounter(PA_thankfulness.getPickAmountCounter()+1);
+                    PA_thankfulness.setPickrateAmountEligibleModifier(PA_thankfulness.getPickrateAmountEligibleModifier()+0.02);
                     break;
                 default:
                     System.out.println("WTF!"+ counter);
-
             }
-
         }
+        System.out.println(chosenCategories);
+        ArrayList<TaskModel> dataList = DB.dummyData();
+        ArrayList<TaskModel> finalChosenTasks = new ArrayList<>();
+        ArrayList<TaskModel> relevantTaskModels = new ArrayList<>();
+        Random rand = new Random();
+        for(String category : chosenCategories){
+            for(TaskModel taskModel : dataList){
+                if(category.equals(taskModel.getCategory())){
+                    relevantTaskModels.add(taskModel);
+                }
+            }
+        }
+        System.out.println(relevantTaskModels.size());
+        for( int i = 0; i < relevantTaskModels.size(); i++){
+            int index = rand.nextInt(relevantTaskModels.size());
+            TaskModel chosenTask = relevantTaskModels.get(index);
+            finalChosenTasks.add(chosenTask);
+        }
+
+        System.out.println(finalChosenTasks);
     }
 }
-class Algorithm{
 
-}
-class DataHandler{
-
-}
 

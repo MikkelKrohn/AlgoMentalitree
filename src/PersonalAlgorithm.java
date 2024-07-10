@@ -41,8 +41,7 @@ public class PersonalAlgorithm {
         } else {
             algo.setPickAmountCounter(0);
         }
-        algo.setPickAmountCounter(algo.getPickAmountCounter()+1);
-        algo.setPickrateAmountEligibleModifier(algo.getPickrateAmountEligibleModifier()+0.02);
+
 
         return finalProbability;
     }
