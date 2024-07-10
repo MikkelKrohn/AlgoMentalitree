@@ -125,12 +125,12 @@ public class Main {
             if(!finalChosenTasks.contains(chosenTask)){
                 finalChosenTasks.add(chosenTask);
             } else {
-                int new_index = rand.nextInt(relevantTaskModels.size());
-                while(new_index == index){
-                    new_index = rand.nextInt(relevantTaskModels.size());
-                    chosenTask = relevantTaskModels.get(new_index);
-                    finalChosenTasks.add(chosenTask);
+                while(finalChosenTasks.contains(chosenTask)){
+                    index = rand.nextInt(relevantTaskModels.size());
+                    chosenTask = relevantTaskModels.get(index);
                 }
+                chosenTask = relevantTaskModels.get(index);
+                finalChosenTasks.add(chosenTask);
             }
 
         }
