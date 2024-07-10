@@ -122,7 +122,17 @@ public class Main {
         for( int i = 0; i < relevantTaskModels.size(); i++){
             int index = rand.nextInt(relevantTaskModels.size());
             TaskModel chosenTask = relevantTaskModels.get(index);
-            finalChosenTasks.add(chosenTask);
+            if(!finalChosenTasks.contains(chosenTask)){
+                finalChosenTasks.add(chosenTask);
+            } else {
+                int new_index = rand.nextInt(relevantTaskModels.size());
+                while(new_index == index){
+                    new_index = rand.nextInt(relevantTaskModels.size());
+                    chosenTask = relevantTaskModels.get(new_index);
+                    finalChosenTasks.add(chosenTask);
+                }
+            }
+
         }
 
         System.out.println(finalChosenTasks);
