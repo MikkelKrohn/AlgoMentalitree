@@ -8,36 +8,26 @@ import java.util.Random;
 public class Main {
     public static void main(String args[]) {
         Database DB = new Database();
-        PersonalAlgorithm PA_reflection = new PersonalAlgorithm("reflection");
-        PersonalAlgorithm PA_nutrition = new PersonalAlgorithm("nutrituion");
-        PersonalAlgorithm PA_cleaning = new PersonalAlgorithm("cleaning");
-        PersonalAlgorithm PA_nature = new PersonalAlgorithm("nature");
-        PersonalAlgorithm PA_fitness = new PersonalAlgorithm("fitness");
-        PersonalAlgorithm PA_social = new PersonalAlgorithm("social");
-        PersonalAlgorithm PA_talking = new PersonalAlgorithm("talking");
-        PersonalAlgorithm PA_mindfulness = new PersonalAlgorithm("mindfulness");
-        PersonalAlgorithm PA_thankfulness = new PersonalAlgorithm("thankfulness");
-
-        Double reflectionProp = PA_reflection.calculateProbability(PA_reflection, LocalDate.now().minusDays(1));
-        Double nutritionProp = PA_nutrition.calculateProbability(PA_nutrition, LocalDate.now().minusDays(2));
-        Double cleaningProp = PA_cleaning.calculateProbability(PA_cleaning, LocalDate.now().minusDays(1));
-        Double natureProp = PA_nature.calculateProbability(PA_nature, LocalDate.now().minusDays(2));
-        Double fitnessProp = PA_fitness.calculateProbability(PA_fitness, LocalDate.now().minusDays(1));
-        Double socialProp = PA_social.calculateProbability(PA_social, LocalDate.now().minusDays(1));
-        Double talkingProp = PA_talking.calculateProbability(PA_talking, LocalDate.now().minusDays(1));
-        Double mindfulnessProp = PA_mindfulness.calculateProbability(PA_mindfulness, LocalDate.now().minusDays(1));
-        Double thankfulness = PA_thankfulness.calculateProbability(PA_thankfulness, LocalDate.now().minusDays(1));
+        CategoryProbability GenreProbability_reflection = new CategoryProbability("reflection");
+        CategoryProbability GenreProbability_nutrition = new CategoryProbability("nutrition");
+        CategoryProbability GenreProbability_cleaning = new CategoryProbability("cleaning");
+        CategoryProbability GenreProbability_nature = new CategoryProbability("nature");
+        CategoryProbability GenreProbability_fitness = new CategoryProbability("fitness");
+        CategoryProbability GenreProbability_social = new CategoryProbability("social");
+        CategoryProbability GenreProbability_talking = new CategoryProbability("talking");
+        CategoryProbability GenreProbability_mindfulness = new CategoryProbability("mindfulness");
+        CategoryProbability GenreProbability_thankfulness = new CategoryProbability("thankfulness");
 
         ArrayList<Double> allProbs = new ArrayList<>();
-        allProbs.add(reflectionProp);
-        allProbs.add(nutritionProp);
-        allProbs.add(cleaningProp);
-        allProbs.add(natureProp);
-        allProbs.add(fitnessProp);
-        allProbs.add(socialProp);
-        allProbs.add(talkingProp);
-        allProbs.add(mindfulnessProp);
-        allProbs.add(thankfulness);
+        allProbs.add(GenreProbability_reflection.calculateProbability(GenreProbability_reflection, false,"Good"));
+        allProbs.add(GenreProbability_nutrition.calculateProbability(GenreProbability_nutrition, false,"Good"));
+        allProbs.add(GenreProbability_cleaning.calculateProbability(GenreProbability_cleaning, false,"Good"));
+        allProbs.add(GenreProbability_nature.calculateProbability(GenreProbability_nature, false,"Good"));
+        allProbs.add(GenreProbability_fitness.calculateProbability(GenreProbability_fitness, false,"Good"));
+        allProbs.add(GenreProbability_social.calculateProbability(GenreProbability_social, false,"Good"));
+        allProbs.add(GenreProbability_talking.calculateProbability(GenreProbability_talking, false,"Good"));
+        allProbs.add(GenreProbability_mindfulness.calculateProbability(GenreProbability_mindfulness, false,"Good"));
+        allProbs.add(GenreProbability_thankfulness.calculateProbability(GenreProbability_thankfulness, false,"Good"));
         Double totalProb = 0.0;
         for (Double prob : allProbs) {
             totalProb += prob;
@@ -59,48 +49,40 @@ public class Main {
             switch (counter) {
                 case 1:
                     chosenCategories.add("reflection");
-                    PA_reflection.setPickAmountCounter(PA_reflection.getPickAmountCounter()+1);
-                    PA_reflection.setPickrateAmountEligibleModifier(PA_reflection.getPickrateAmountEligibleModifier()+0.02);
+                    GenreProbability_reflection.setPickAmountCounter(GenreProbability_reflection.getPickAmountCounter()+1);
                     break;
                 case 2:
                     chosenCategories.add("nutrition");
-                    PA_nutrition.setPickAmountCounter(PA_nutrition.getPickAmountCounter()+1);
-                    PA_nutrition.setPickrateAmountEligibleModifier(PA_nutrition.getPickrateAmountEligibleModifier()+0.02);
+                    GenreProbability_nutrition.setPickAmountCounter(GenreProbability_nutrition.getPickAmountCounter()+1);
                     break;
                 case 3:
                     chosenCategories.add("cleaning");
-                    PA_cleaning.setPickAmountCounter(PA_cleaning.getPickAmountCounter()+1);
-                    PA_cleaning.setPickrateAmountEligibleModifier(PA_cleaning.getPickrateAmountEligibleModifier()+0.02);
+
+                    GenreProbability_cleaning.setPickAmountCounter(GenreProbability_cleaning.getPickAmountCounter()+1);
                     break;
                 case 4:
                     chosenCategories.add("nature");
-                    PA_nature.setPickAmountCounter(PA_nature.getPickAmountCounter()+1);
-                    PA_nature.setPickrateAmountEligibleModifier(PA_nature.getPickrateAmountEligibleModifier()+0.02);
+                    GenreProbability_nature.setPickAmountCounter(GenreProbability_nature.getPickAmountCounter()+1);
                     break;
                 case 5:
                     chosenCategories.add("fitness");
-                    PA_fitness.setPickAmountCounter(PA_fitness.getPickAmountCounter()+1);
-                    PA_fitness.setPickrateAmountEligibleModifier(PA_fitness.getPickrateAmountEligibleModifier()+0.02);
+                    GenreProbability_fitness.setPickAmountCounter(GenreProbability_fitness.getPickAmountCounter()+1);
                     break;
                 case 6:
                     chosenCategories.add("social");
-                    PA_social.setPickAmountCounter(PA_social.getPickAmountCounter()+1);
-                    PA_social.setPickrateAmountEligibleModifier(PA_social.getPickrateAmountEligibleModifier()+0.02);
+                    GenreProbability_social.setPickAmountCounter(GenreProbability_social.getPickAmountCounter()+1);
                     break;
                 case 7:
                     chosenCategories.add("talking");
-                    PA_talking.setPickAmountCounter(PA_talking.getPickAmountCounter()+1);
-                    PA_talking.setPickrateAmountEligibleModifier(PA_talking.getPickrateAmountEligibleModifier()+0.02);
+                    GenreProbability_talking.setPickAmountCounter(GenreProbability_talking.getPickAmountCounter()+1);
                     break;
                 case 8:
                     chosenCategories.add("mindfulness");
-                    PA_mindfulness.setPickAmountCounter(PA_mindfulness.getPickAmountCounter()+1);
-                    PA_mindfulness.setPickrateAmountEligibleModifier(PA_mindfulness.getPickrateAmountEligibleModifier()+0.02);
+                    GenreProbability_mindfulness.setPickAmountCounter(GenreProbability_mindfulness.getPickAmountCounter()+1);
                     break;
                 case 9:
                     chosenCategories.add("thankfulness");
-                    PA_thankfulness.setPickAmountCounter(PA_thankfulness.getPickAmountCounter()+1);
-                    PA_thankfulness.setPickrateAmountEligibleModifier(PA_thankfulness.getPickrateAmountEligibleModifier()+0.02);
+                    GenreProbability_thankfulness.setPickAmountCounter(GenreProbability_thankfulness.getPickAmountCounter()+1);
                     break;
                 default:
                     System.out.println("WTF!"+ counter);
